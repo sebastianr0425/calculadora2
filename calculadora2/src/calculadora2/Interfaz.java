@@ -28,12 +28,45 @@ public class Interfaz  extends JFrame implements ActionListener {
 
 
     public Interfaz(){
+        JFrame jfMain = new JFrame("Calculadora");
+        jfMain.setLayout(new BorderLayout(5, 5));
+
+        norte();
+        sur();
+
+        jfMain.add(panel1, BorderLayout.NORTH);
+        jfMain.add(pan1, BorderLayout.CENTER);
+
+        jfMain.setLocation(500, 225);
+        jfMain.setResizable(false);
+        jfMain.setVisible(true);
+        jfMain.setSize(300, 300);
+        jfMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       try{
+       URL url =new URL("indice.jpg");
+       Toolkit kit=Toolkit.getDefaultToolkit();
+       Image img=kit.createImage(url);
+       this.setIconImage(img);
+       }
+       catch(Exception e){
+       System.out.println(e);
+       }
+    }
+
+    private void norte() {
         
+    }
+
+    private void sur() {
+       
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-}
+    }
+
+    
+
 
