@@ -28,6 +28,7 @@ public class Interfaz  extends JFrame implements ActionListener {
 
 
     public Interfaz(){
+
         JFrame jfMain = new JFrame("Calculadora");
         jfMain.setLayout(new BorderLayout(5, 5));
 
@@ -53,7 +54,25 @@ public class Interfaz  extends JFrame implements ActionListener {
        }
     }
 
-    private void norte() {
+   
+
+    public void sur(){
+
+        pan1 = new JPanel(new BorderLayout(6, 50));
+        pan1.setLayout(new BorderLayout(4, 4));
+
+        
+        botonesNumeros();
+        botonesOperaciones();
+
+      
+        pan1.add(pan2, BorderLayout.CENTER); 
+        pan1.add(panel3, BorderLayout.EAST); 
+
+        pan1.setSize(270, 330);
+    }
+    public void norte(){
+
         panel1 = new Panel(null);        
 
         jtexto = new JTextField("");
@@ -62,7 +81,7 @@ public class Interfaz  extends JFrame implements ActionListener {
         jtexto.setHorizontalAlignment(JTextField.RIGHT); 
         jtexto2.setHorizontalAlignment(JTextField.RIGHT); 
 
-      
+        
         jtexto.setBorder(BorderFactory.createLineBorder(Color.white));
         jtexto2.setBorder(BorderFactory.createLineBorder(Color.white));
 
@@ -81,30 +100,122 @@ public class Interfaz  extends JFrame implements ActionListener {
         panel1.setSize(270, 47);
         panel1.setVisible(true);
 
-        
+    }
+     public void botonesOperaciones(){
+
+        panel3 = new Panel(null);
+
+        int u=0, z=0, p=0;
+
+        operaciones = new JButton[7];
+
+        for(int i=0; i<=6; i++){
+            if(u<=1){
+
+                operaciones[i] = new JButton(opera[i]);
+                panel3.add(operaciones[i]);
+
+                    operaciones[i].setBounds(z, p, 30, 35);
+
+                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
+                    operaciones[i].addActionListener(this);
+                    z+=33;
+                    u++;               
+            }
+            else{
+                if(i==6){
+                    z=0; p+=43;
+                    operaciones[i] = new JButton(opera[i]);
+                    panel3.add(operaciones[i]);
+
+                    operaciones[i].setBounds(z, p, 65, 35);
+
+                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
+                    operaciones[i].addActionListener(this);
+                    z+=33;
+                    u++;
+                }
+                else{
+                    u=0;
+                    z=0; p+=43;
+                    operaciones[i] = new JButton(opera[i]);
+                    panel3.add(operaciones[i]);
+
+                    operaciones[i].setBounds(z, p, 30, 35);
+
+                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
+                    operaciones[i].addActionListener(this);
+                    z+=33;
+                    u++;   
+                }                             
+            }                
+
+        }
+
+        panel3.setVisible(true);
+        panel3.setSize(120, 200);
     }
 
-    private void sur() {
-        
-        pan1 = new JPanel(new BorderLayout(6, 50));
-        pan1.setLayout(new BorderLayout(4, 4));
+    
 
-        
-        botonesNumeros();
-        botonesOperaciones();
+    public void botonesNumeros(){
 
-      
-        pan1.add(pan2, BorderLayout.CENTER); 
-        pan1.add(panel3, BorderLayout.EAST); 
-
-        pan1.setSize(270, 330);
-
+        pan2 = new JPanel(null);
+        numeros = new JButton[11];
+        int numero=86,numerox3=121, numerox2=121, numerox1=121, numero3=0, numero2y=43;
        
+
+        
+        
+        for (int i=0; i<=10; i++){
+
+            if(i<=9){
+                numeros[i] = new JButton(""+i);
+                pan2.add(numeros[i]);
+                numeros[i].setMargin(new Insets(1, 1, 1, 1));
+                numeros[i].addActionListener(this);  
+            }
+            else{
+                numeros[i] = new JButton(".");
+                pan2.add(numeros[i]);
+                numeros[i].setMargin(new Insets(1, 1, 1, 1));
+                numeros[i].addActionListener(this);
+            }
+        }
+        
+        for(int i=10; i>=0; i--){
+
+            if(i==10){
+                numeros[i].setBounds(122, 130, 36, 36);
+            }
+            else{
+                if(i<=9 && i>=7){
+                    numeros[i].setBounds(numerox3, numero3, 35, 35);
+                    numerox3-=43;
+                }
+                else if(i<=6 && i>=4){   
+                    numero3+=43;                    
+                    numeros[i].setBounds(numerox2, numero2y, 35, 35);
+                    numerox2-=43;
+                }
+                else if(i<=3 && i>=1){
+                    numero3+=43;                    
+                    numeros[i].setBounds(numerox1, numero, 35, 35);
+                    numerox1-=43;
+                }
+                else if(i==0){
+                    numeros[i].setBounds(35, 129, 78, 35);                    
+                }
+            }                
+        }
+
+        pan2.setSize(170, 150);
+        pan2.setVisible(true);
     }
 
-    @Override
+   
+     @Override
     public void actionPerformed(ActionEvent e) {
-        
 
         String  opera="";
 
@@ -345,127 +456,8 @@ public class Interfaz  extends JFrame implements ActionListener {
         }catch(NumberFormatException e){
             return false;
         }
-   }
-           
-   
-
-    private void botonesOperaciones() {
-            
-            panel3 = new Panel(null);
-
-        int u=0, z=0, p=0;
-
-        operaciones = new JButton[7];
-
-        for(int i=0; i<=6; i++){
-            if(u<=1){
-
-                operaciones[i] = new JButton(opera[i]);
-                panel3.add(operaciones[i]);
-
-                    operaciones[i].setBounds(z, p, 30, 35);
-
-                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
-                    operaciones[i].addActionListener(this);
-                    z+=33;
-                    u++;               
-            }
-            else{
-                if(i==6){
-                    z=0; p+=43;
-                    operaciones[i] = new JButton(opera[i]);
-                    panel3.add(operaciones[i]);
-
-                    operaciones[i].setBounds(z, p, 65, 35);
-
-                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
-                    operaciones[i].addActionListener(this);
-                    z+=33;
-                    u++;
-                }
-                else{
-                    u=0;
-                    z=0; p+=43;
-                    operaciones[i] = new JButton(opera[i]);
-                    panel3.add(operaciones[i]);
-
-                    operaciones[i].setBounds(z, p, 30, 35);
-
-                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
-                    operaciones[i].addActionListener(this);
-                    z+=33;
-                    u++;   
-                }                             
-            }                
-
-        }
-        panel3.setVisible(true);
-        panel3.setSize(120, 200);
-    
-    }
-
-
-    private void botonesNumeros() {
-        pan2=new JPanel(null);
-        numeros=new JButton[11];
-        int numero=86,numerox3=121,numerox2=121,numerox1=121,numero3=0,numero2y=43;
-        
-      
-        for(int i=0;i<=10;i++){
-            if(i<=9){
-                numeros[i]=new JButton(""+i);
-                pan2.add(numeros[i]);
-                numeros[i].setMargin(new Insets(1,1,1,1));
-                numeros[i].addActionListener(this);
-            }
-            else{
-                numeros[i]=new JButton(".");
-                pan2.add(numeros[i]);
-                numeros[i].setMargin(new Insets(1,1,1,1));
-                numeros[i].addActionListener(this);
-            }
-        }
-       
-        for(int i=10;i>=0;i--){
-            if(i==10){
-                numeros[i].setBounds(122,130,36,36);
-            }
-            else {
-                if(i<=9&&i>=7){
-                    numeros[i].setBounds(numerox3,numero3,35,35);
-                    numerox3=43;
-                }
-                else if(i<=6&&i>=4){
-                    numero3+=43;
-                    numeros[i].setBounds(numerox2,numero2y,35,35);
-                    numerox2-=43;
-                }
-                else if(i<=3&&i>=1){
-                    numero3+=43;
-                    numeros[i].setBounds(numerox1,numero,35,35);
-                    numerox1-=43;
-                }
-                else if(i==0){
-                    numeros[i].setBounds(35, 129, 78, 35);                    
-                }
-            }                
-        }
-
-        pan2.setSize(170, 150);
-        pan2.setVisible(true);
-    }
-}
-
-
-
-       
-                
-            
-        
-        
-    
-    
-
+    } 
+    }       
     
 
 
