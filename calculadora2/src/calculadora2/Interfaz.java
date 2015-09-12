@@ -22,9 +22,9 @@ public class Interfaz  extends JFrame implements ActionListener {
     JTextField jtexto, jtexto2;
     Panel panel1, panel2, panel3;
     JPanel pan1, pan2;
-     boolean x=false;//control sobre escribir un nuevo numero despues de alguna operacion cambia a true cuando se ha realizado una operacion
+     boolean x=false;
     JButton  BotonSuma, BotonMenos, numeros[], operaciones[];
-    int tipoBoton; //para controlar el tipo de operacion que se realiza
+    int tipoBoton; 
 
 
     public Interfaz(){
@@ -62,11 +62,11 @@ public class Interfaz  extends JFrame implements ActionListener {
         jtexto.setHorizontalAlignment(JTextField.RIGHT); 
         jtexto2.setHorizontalAlignment(JTextField.RIGHT); 
 
-        //Quitar bordes a los campos de texto
+      
         jtexto.setBorder(BorderFactory.createLineBorder(Color.white));
         jtexto2.setBorder(BorderFactory.createLineBorder(Color.white));
 
-        //desabilitando los campos de texto
+       
         jtexto.setEditable(false);
         jtexto2.setEditable(false);
 
@@ -108,7 +108,7 @@ public class Interfaz  extends JFrame implements ActionListener {
 
         String  opera="";
 
-        if(esNumero(e.getActionCommand())){ //cuando se oprimen numeros
+        if(esNumero(e.getActionCommand())){ 
 
             if(jtexto.getText().equals("")){
                 auxiliar += e.getActionCommand();
@@ -136,20 +136,20 @@ public class Interfaz  extends JFrame implements ActionListener {
                 }
             }            
         }
-        else{//cuando se oprime el resto de botones
+        else{
 
             if(e.getActionCommand().equals("R") ){
                 jtexto.setText("");
                 Float a = Float.parseFloat(jtexto2.getText());
                 jtexto2.setText(""+Math.sqrt(a)); 
             }
-            if(e.getActionCommand().equals("C") ){ //para reiniciar valores y limpiar pantalla
+            if(e.getActionCommand().equals("C") ){ 
                 tipoBoton=0; numero1 = 0; numero2 =0; resultado=0; jtexto.setText(""); jtexto2.setText("0"); auxiliar="";
             }   
             
             
             }    
-            if(e.getActionCommand().equals(".")){//usar el punto para los decimales
+            if(e.getActionCommand().equals(".")){
                 auxiliar="";
                 if(numeros[10].isEnabled()){
                     numeros[10].setEnabled(false);
@@ -157,12 +157,12 @@ public class Interfaz  extends JFrame implements ActionListener {
                     jtexto2.setText(auxiliar);
                 }
             }
-            if(e.getActionCommand().equals("+") ){//boton suma
+            if(e.getActionCommand().equals("+") ){
                 numeros[10].setEnabled(true);
                 auxiliar="";
                 if(tipoBoton==1){
 
-                }else if(tipoBoton==0 ){//validacion para no chocar con otras operaciones
+                }else if(tipoBoton==0 ){
                         if(jtexto.getText().equals("") ){
                             numero1 = Float.parseFloat(jtexto2.getText());                    
                             auxiliar += jtexto.getText()+jtexto2.getText();
@@ -171,14 +171,14 @@ public class Interfaz  extends JFrame implements ActionListener {
                             tipoBoton = 1;
                         }
                         else {
-                            if(!x){//validacion para nueva operacion
+                            if(!x){
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto2.getText();
                                 jtexto.setText(auxiliar+" + ");
                                 jtexto2.setText("");
                                 tipoBoton = 1;
                             }
-                            else{//usar otras operaciones con la suma
+                            else{
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto.getText();
                                 jtexto.setText(auxiliar+" + ");
@@ -188,12 +188,12 @@ public class Interfaz  extends JFrame implements ActionListener {
                         }
                     }                     
              }
-                if(e.getActionCommand().equals("-") ){//cuando se decide restar
+                if(e.getActionCommand().equals("-") ){
                     numeros[10].setEnabled(true);
                     auxiliar="";
                     if(tipoBoton==2){
 
-                    }else if(tipoBoton==0){//validacion para no chocar con otras operaciones
+                    }else if(tipoBoton==0){
                         if(jtexto.getText().equals("")){
                             numero1 = Float.parseFloat(jtexto2.getText());                    
                             auxiliar += jtexto.getText()+ jtexto2.getText();
@@ -202,14 +202,14 @@ public class Interfaz  extends JFrame implements ActionListener {
                             tipoBoton = 2;
                         }
                         else{
-                            if(!x){//validacion para nueva operacion
+                            if(!x){
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto2.getText();
                                 jtexto.setText(auxiliar+" - ");
                                 jtexto2.setText("");
                                 tipoBoton = 2;
                             }
-                            else{//usar otras operaciones con la suma
+                            else{
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto.getText();
                                 jtexto.setText(auxiliar+" - ");
@@ -219,12 +219,12 @@ public class Interfaz  extends JFrame implements ActionListener {
                         }
                     }                    
                 }
-                if(e.getActionCommand().equals("*") ){//cuando se decide multiplicar
+                if(e.getActionCommand().equals("*") ){
                     numeros[10].setEnabled(true);
                     auxiliar="";
                     if(tipoBoton==3){
 
-                    }else if(tipoBoton==0){//validacion para no chocar con otras operaciones
+                    }else if(tipoBoton==0){
                         if(jtexto.getText().equals("")){
                             numero1 = Float.parseFloat(jtexto2.getText());                    
                             auxiliar += jtexto.getText()+jtexto2.getText();
@@ -233,14 +233,14 @@ public class Interfaz  extends JFrame implements ActionListener {
                             tipoBoton = 3;
                         }
                         else{
-                            if(!x){//validacion para nueva operacion
+                            if(!x){
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto2.getText();
                                 jtexto.setText(auxiliar+" * ");
                                 jtexto2.setText("");
                                 tipoBoton = 3;
                             }
-                            else{//usar otras operaciones con la suma
+                            else{
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto.getText();
                                 jtexto.setText(auxiliar+" * ");
@@ -250,12 +250,12 @@ public class Interfaz  extends JFrame implements ActionListener {
                         }
                     }                      
                 }
-                if(e.getActionCommand().equals("/") ){//cuando se decide dividir
+                if(e.getActionCommand().equals("/") ){
                     numeros[10].setEnabled(true);
                     auxiliar="";
                     if(tipoBoton==4){
 
-                    }else if(tipoBoton==0){//validacion para no chocar con otras operaciones
+                    }else if(tipoBoton==0){
                         if(jtexto.getText().equals("")){
                             numero1 = Float.parseFloat(jtexto2.getText());                    
                             auxiliar += jtexto.getText()+jtexto2.getText();
@@ -264,14 +264,14 @@ public class Interfaz  extends JFrame implements ActionListener {
                             tipoBoton = 4;
                         }
                         else{
-                            if(!x){//validacion para nueva operacion
+                            if(!x){
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto2.getText();
                                 jtexto.setText(auxiliar+" / ");
                                 jtexto2.setText("");
                                 tipoBoton = 4;
                             }
-                            else{//usar otras operaciones con la suma
+                            else{
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto.getText();
                                 jtexto.setText(auxiliar+" / ");
@@ -283,7 +283,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                 }
                 if(e.getActionCommand().equals("=") && !jtexto2.getText().equals("")){
                     x = true;
-                    if(tipoBoton==1){//operacion para la suma
+                    if(tipoBoton==1){
                         tipoBoton = 0;
                         auxiliar="";
                         auxiliar+=jtexto.getText() + jtexto2.getText();
@@ -292,7 +292,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                         resultado=numero1+numero2;
                         jtexto2.setText(String.valueOf(resultado));
                     }
-                    else if(tipoBoton==2){ //operacion para la resta
+                    else if(tipoBoton==2){ 
                         tipoBoton = 0;
                         auxiliar="";
                         auxiliar+=jtexto.getText()+jtexto2.getText();
@@ -301,7 +301,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                         resultado=numero1-numero2;
                         jtexto2.setText(String.valueOf(resultado));
                     }
-                    if(tipoBoton==3){ //operacion para la multiplicacion
+                    if(tipoBoton==3){ 
                         tipoBoton = 0;
                         auxiliar="";
                         auxiliar+=jtexto.getText()+jtexto2.getText();
@@ -310,7 +310,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                         resultado=numero1*numero2;
                         jtexto2.setText(String.valueOf(resultado));
                     }
-                    if(tipoBoton==4){ //operacion para la division
+                    if(tipoBoton==4){ 
                         try{
                         if(Float.parseFloat(jtexto2.getText())!=0){
                             tipoBoton = 0;
@@ -410,9 +410,7 @@ public class Interfaz  extends JFrame implements ActionListener {
         numeros=new JButton[11];
         int numero=86,numerox3=121,numerox2=121,numerox1=121,numero3=0,numero2y=43;
         
-
-// bloque para crear los botones,añadirlos y asignar numeros
-        
+      
         for(int i=0;i<=10;i++){
             if(i<=9){
                 numeros[i]=new JButton(""+i);
@@ -427,7 +425,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                 numeros[i].addActionListener(this);
             }
         }
-        // bloque para posicionar botones
+       
         for(int i=10;i>=0;i--){
             if(i==10){
                 numeros[i].setBounds(122,130,36,36);
