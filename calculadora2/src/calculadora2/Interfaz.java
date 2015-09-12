@@ -29,4 +29,9 @@ public class Interfaz  extends JFrame implements ActionListener {
 
     public Interfaz(){
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+    }
 }
