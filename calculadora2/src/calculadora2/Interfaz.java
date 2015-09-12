@@ -54,6 +54,33 @@ public class Interfaz  extends JFrame implements ActionListener {
     }
 
     private void norte() {
+        panel1 = new Panel(null);        
+
+        jtexto = new JTextField("");
+        jtexto2 = new JTextField("0");
+
+        jtexto.setHorizontalAlignment(JTextField.RIGHT); 
+        jtexto2.setHorizontalAlignment(JTextField.RIGHT); 
+
+        //Quitar bordes a los campos de texto
+        jtexto.setBorder(BorderFactory.createLineBorder(Color.white));
+        jtexto2.setBorder(BorderFactory.createLineBorder(Color.white));
+
+        //desabilitando los campos de texto
+        jtexto.setEditable(false);
+        jtexto2.setEditable(false);
+
+        jtexto.setBackground(Color.white);
+        jtexto2.setBackground(Color.white);
+
+        panel1.add(jtexto); panel1.add(jtexto2);
+
+        jtexto.setBounds(35, 10, 200, 15);
+        jtexto2.setBounds(35, 25, 200, 30);
+
+        panel1.setSize(270, 47);
+        panel1.setVisible(true);
+
         
     }
 
