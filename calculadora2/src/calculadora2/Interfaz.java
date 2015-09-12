@@ -164,9 +164,65 @@ public class Interfaz  extends JFrame implements ActionListener {
 
 
     private void botonesNumeros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pan2=new JPanel(null);
+        numeros=new JButton[11];
+        int numero=86,numerox3=121,numerox2=121,numerox1=121,numero3=0,numero2y=43;
+        
+
+// bloque para crear los botones,añadirlos y asignar numeros
+        
+        for(int i=0;i<=10;i++){
+            if(i<=9){
+                numeros[i]=new JButton(""+i);
+                pan2.add(numeros[i]);
+                numeros[i].setMargin(new Insets(1,1,1,1));
+                numeros[i].addActionListener(this);
+            }
+            else{
+                numeros[i]=new JButton(".");
+                pan2.add(numeros[i]);
+                numeros[i].setMargin(new Insets(1,1,1,1));
+                numeros[i].addActionListener(this);
+            }
+        }
+        // bloque para posicionar botones
+        for(int i=10;i>=0;i--){
+            if(i==10){
+                numeros[i].setBounds(122,130,36,36);
+            }
+            else {
+                if(i<=9&&i>=7){
+                    numeros[i].setBounds(numerox3,numero3,35,35);
+                    numerox3=43;
+                }
+                else if(i<=6&&i>=4){
+                    numero3+=43;
+                    numeros[i].setBounds(numerox2,numero2y,35,35);
+                    numerox2-=43;
+                }
+                else if(i<=3&&i>=1){
+                    numero3+=43;
+                    numeros[i].setBounds(numerox1,numero,35,35);
+                    numerox1-=43;
+                }
+                else if(i==0){
+                    numeros[i].setBounds(35, 129, 78, 35);                    
+                }
+            }                
+        }
+
+        pan2.setSize(170, 150);
+        pan2.setVisible(true);
     }
-    }
+}
+
+       
+                
+            
+        
+        
+    
+    
 
     
 
