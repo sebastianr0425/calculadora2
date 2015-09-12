@@ -108,8 +108,60 @@ public class Interfaz  extends JFrame implements ActionListener {
     }
 
     private void botonesOperaciones() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
+            panel3 = new Panel(null);
+
+        int u=0, z=0, p=0;
+
+        operaciones = new JButton[7];
+
+        for(int i=0; i<=6; i++){
+            if(u<=1){
+
+                operaciones[i] = new JButton(opera[i]);
+                panel3.add(operaciones[i]);
+
+                    operaciones[i].setBounds(z, p, 30, 35);
+
+                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
+                    operaciones[i].addActionListener(this);
+                    z+=33;
+                    u++;               
+            }
+            else{
+                if(i==6){
+                    z=0; p+=43;
+                    operaciones[i] = new JButton(opera[i]);
+                    panel3.add(operaciones[i]);
+
+                    operaciones[i].setBounds(z, p, 65, 35);
+
+                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
+                    operaciones[i].addActionListener(this);
+                    z+=33;
+                    u++;
+                }
+                else{
+                    u=0;
+                    z=0; p+=43;
+                    operaciones[i] = new JButton(opera[i]);
+                    panel3.add(operaciones[i]);
+
+                    operaciones[i].setBounds(z, p, 30, 35);
+
+                    operaciones[i].setMargin(new Insets(1, 1, 1, 1));
+                    operaciones[i].addActionListener(this);
+                    z+=33;
+                    u++;   
+                }                             
+            }                
+
+        }
+        panel3.setVisible(true);
+        panel3.setSize(120, 200);
+    
     }
+
 
     private void botonesNumeros() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
