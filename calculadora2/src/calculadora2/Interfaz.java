@@ -85,11 +85,33 @@ public class Interfaz  extends JFrame implements ActionListener {
     }
 
     private void sur() {
+        
+        pan1 = new JPanel(new BorderLayout(6, 50));
+        pan1.setLayout(new BorderLayout(4, 4));
+
+        
+        botonesNumeros();
+        botonesOperaciones();
+
+      
+        pan1.add(pan2, BorderLayout.CENTER); 
+        pan1.add(panel3, BorderLayout.EAST); 
+
+        pan1.setSize(270, 330);
+
        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void botonesOperaciones() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void botonesNumeros() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     }
