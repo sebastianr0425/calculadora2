@@ -104,8 +104,250 @@ public class Interfaz  extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+
+        String  opera="";
+
+        if(esNumero(e.getActionCommand())){ //cuando se oprimen numeros
+
+            if(jtexto.getText().equals("")){
+                auxiliar += e.getActionCommand();
+                jtexto2.setText(auxiliar);
+            }
+            else{
+                if(tipoBoton==0){
+                    if(x){
+                        auxiliar=""; 
+
+                        jtexto.setText(jtexto2.getText());                        
+                        auxiliar += e.getActionCommand();
+                        jtexto2.setText(auxiliar);    
+                        x = false;
+                    }
+                    else{
+                        auxiliar="";
+                        auxiliar += jtexto2.getText()+e.getActionCommand();
+                        jtexto2.setText(auxiliar);
+                    }                
+                }else{
+                    auxiliar="";
+                    auxiliar += jtexto2.getText()+e.getActionCommand();
+                    jtexto2.setText(auxiliar);
+                }
+            }            
+        }
+        else{//cuando se oprime el resto de botones
+
+            if(e.getActionCommand().equals("R") ){
+                jtexto.setText("");
+                Float a = Float.parseFloat(jtexto2.getText());
+                jtexto2.setText(""+Math.sqrt(a)); 
+            }
+            if(e.getActionCommand().equals("C") ){ //para reiniciar valores y limpiar pantalla
+                tipoBoton=0; numero1 = 0; numero2 =0; resultado=0; jtexto.setText(""); jtexto2.setText("0"); auxiliar="";
+            }   
+            
+            
+            }    
+            if(e.getActionCommand().equals(".")){//usar el punto para los decimales
+                auxiliar="";
+                if(numeros[10].isEnabled()){
+                    numeros[10].setEnabled(false);
+                    auxiliar = jtexto2.getText() +".";
+                    jtexto2.setText(auxiliar);
+                }
+            }
+            if(e.getActionCommand().equals("+") ){//boton suma
+                numeros[10].setEnabled(true);
+                auxiliar="";
+                if(tipoBoton==1){
+
+                }else if(tipoBoton==0 ){//validacion para no chocar con otras operaciones
+                        if(jtexto.getText().equals("") ){
+                            numero1 = Float.parseFloat(jtexto2.getText());                    
+                            auxiliar += jtexto.getText()+jtexto2.getText();
+                            jtexto.setText(auxiliar+" + ");
+                            jtexto2.setText("");
+                            tipoBoton = 1;
+                        }
+                        else {
+                            if(!x){//validacion para nueva operacion
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto2.getText();
+                                jtexto.setText(auxiliar+" + ");
+                                jtexto2.setText("");
+                                tipoBoton = 1;
+                            }
+                            else{//usar otras operaciones con la suma
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto.getText();
+                                jtexto.setText(auxiliar+" + ");
+                                jtexto2.setText("");
+                                tipoBoton = 1;
+                            }
+                        }
+                    }                     
+             }
+                if(e.getActionCommand().equals("-") ){//cuando se decide restar
+                    numeros[10].setEnabled(true);
+                    auxiliar="";
+                    if(tipoBoton==2){
+
+                    }else if(tipoBoton==0){//validacion para no chocar con otras operaciones
+                        if(jtexto.getText().equals("")){
+                            numero1 = Float.parseFloat(jtexto2.getText());                    
+                            auxiliar += jtexto.getText()+ jtexto2.getText();
+                            jtexto.setText(auxiliar+" - ");
+                            jtexto2.setText("");
+                            tipoBoton = 2;
+                        }
+                        else{
+                            if(!x){//validacion para nueva operacion
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto2.getText();
+                                jtexto.setText(auxiliar+" - ");
+                                jtexto2.setText("");
+                                tipoBoton = 2;
+                            }
+                            else{//usar otras operaciones con la suma
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto.getText();
+                                jtexto.setText(auxiliar+" - ");
+                                jtexto2.setText("");
+                                tipoBoton = 2;
+                            }
+                        }
+                    }                    
+                }
+                if(e.getActionCommand().equals("*") ){//cuando se decide multiplicar
+                    numeros[10].setEnabled(true);
+                    auxiliar="";
+                    if(tipoBoton==3){
+
+                    }else if(tipoBoton==0){//validacion para no chocar con otras operaciones
+                        if(jtexto.getText().equals("")){
+                            numero1 = Float.parseFloat(jtexto2.getText());                    
+                            auxiliar += jtexto.getText()+jtexto2.getText();
+                            jtexto.setText(auxiliar+" * ");
+                            jtexto2.setText("");
+                            tipoBoton = 3;
+                        }
+                        else{
+                            if(!x){//validacion para nueva operacion
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto2.getText();
+                                jtexto.setText(auxiliar+" * ");
+                                jtexto2.setText("");
+                                tipoBoton = 3;
+                            }
+                            else{//usar otras operaciones con la suma
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto.getText();
+                                jtexto.setText(auxiliar+" * ");
+                                jtexto2.setText("");
+                                tipoBoton = 3;
+                            }
+                        }
+                    }                      
+                }
+                if(e.getActionCommand().equals("/") ){//cuando se decide dividir
+                    numeros[10].setEnabled(true);
+                    auxiliar="";
+                    if(tipoBoton==4){
+
+                    }else if(tipoBoton==0){//validacion para no chocar con otras operaciones
+                        if(jtexto.getText().equals("")){
+                            numero1 = Float.parseFloat(jtexto2.getText());                    
+                            auxiliar += jtexto.getText()+jtexto2.getText();
+                            jtexto.setText(auxiliar+" / ");
+                            jtexto2.setText("");
+                            tipoBoton = 4;
+                        }
+                        else{
+                            if(!x){//validacion para nueva operacion
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto2.getText();
+                                jtexto.setText(auxiliar+" / ");
+                                jtexto2.setText("");
+                                tipoBoton = 4;
+                            }
+                            else{//usar otras operaciones con la suma
+                                numero1 = Float.parseFloat(jtexto2.getText());                    
+                                auxiliar += jtexto.getText();
+                                jtexto.setText(auxiliar+" / ");
+                                jtexto2.setText("");
+                                tipoBoton = 4;
+                            }
+                        }
+                    }                      
+                }
+                if(e.getActionCommand().equals("=") && !jtexto2.getText().equals("")){
+                    x = true;
+                    if(tipoBoton==1){//operacion para la suma
+                        tipoBoton = 0;
+                        auxiliar="";
+                        auxiliar+=jtexto.getText() + jtexto2.getText();
+                        jtexto.setText(auxiliar);
+                        numero2 = Float.parseFloat(jtexto2.getText());
+                        resultado=numero1+numero2;
+                        jtexto2.setText(String.valueOf(resultado));
+                    }
+                    else if(tipoBoton==2){ //operacion para la resta
+                        tipoBoton = 0;
+                        auxiliar="";
+                        auxiliar+=jtexto.getText()+jtexto2.getText();
+                        jtexto.setText(auxiliar);
+                        numero2 = Float.parseFloat(jtexto2.getText());
+                        resultado=numero1-numero2;
+                        jtexto2.setText(String.valueOf(resultado));
+                    }
+                    if(tipoBoton==3){ //operacion para la multiplicacion
+                        tipoBoton = 0;
+                        auxiliar="";
+                        auxiliar+=jtexto.getText()+jtexto2.getText();
+                        jtexto.setText(auxiliar);
+                        numero2 = Float.parseFloat(jtexto2.getText());
+                        resultado=numero1*numero2;
+                        jtexto2.setText(String.valueOf(resultado));
+                    }
+                    if(tipoBoton==4){ //operacion para la division
+                        try{
+                        if(Float.parseFloat(jtexto2.getText())!=0){
+                            tipoBoton = 0;
+                            auxiliar="";
+                            auxiliar+=jtexto.getText()+jtexto2.getText();
+                            jtexto.setText(auxiliar);
+                            numero2 = Float.parseFloat(jtexto2.getText());
+                            resultado=numero1/numero2;
+                            jtexto2.setText(String.valueOf(resultado));
+                        }
+                        else{
+                        ExceptionInInitializerError();
+                        }
+                           
+                        }catch(Exception w){
+                       
+                            JOptionPane.showMessageDialog(null, "No se puede realizar divison por 0");
+                    }
+                    }
+                }
+        }        
+
+    private void ExceptionInInitializerError() {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
+
+    public boolean esNumero(String ax){
+
+        try{
+            int n = Integer.parseInt(ax);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
+   }
+           
+   
 
     private void botonesOperaciones() {
             
@@ -215,6 +457,8 @@ public class Interfaz  extends JFrame implements ActionListener {
         pan2.setVisible(true);
     }
 }
+
+
 
        
                 
