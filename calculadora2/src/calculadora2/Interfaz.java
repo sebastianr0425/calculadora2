@@ -1,13 +1,10 @@
 package calculadora2;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Panel;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,19 +14,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Interfaz  extends JFrame implements ActionListener {
-    String opera[]={"R","C", "+", "*", "/", "-" ,"="},  auxiliar="";
+    String opera[]={"CE","C", "+", "*", "/", "-" ,"="},  auxiliar="";
     float numero1, numero2, resultado, M;
     JTextField jtexto, jtexto2;
     Panel panel1, panel2, panel3;
     JPanel pan1, pan2;
      boolean x=false;
     JButton  BotonSuma, BotonMenos, numeros[], operaciones[];
-    int tipoBoton; 
+    int tipoBoton;
 
 
     public Interfaz(){
 
         JFrame jfMain = new JFrame("Calculadora");
+        jfMain.setIconImage(new ImageIcon(getClass().getResource("../imagenes/Calculadora.png")).getImage());
         jfMain.setLayout(new BorderLayout(5, 5));
 
         norte();
@@ -37,21 +35,14 @@ public class Interfaz  extends JFrame implements ActionListener {
 
         jfMain.add(panel1, BorderLayout.NORTH);
         jfMain.add(pan1, BorderLayout.CENTER);
+       
 
         jfMain.setLocation(500, 225);
         jfMain.setResizable(false);
         jfMain.setVisible(true);
         jfMain.setSize(300, 300);
         jfMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       try{
-       URL url =new URL("indice.jpg");
-       Toolkit kit=Toolkit.getDefaultToolkit();
-       Image img=kit.createImage(url);
-       this.setIconImage(img);
-       }
-       catch(Exception e){
-       System.out.println(e);
-       }
+       
     }
 
    
@@ -85,7 +76,7 @@ public class Interfaz  extends JFrame implements ActionListener {
         jtexto.setBorder(BorderFactory.createLineBorder(Color.white));
         jtexto2.setBorder(BorderFactory.createLineBorder(Color.white));
 
-       
+        
         jtexto.setEditable(false);
         jtexto2.setEditable(false);
 
@@ -219,7 +210,7 @@ public class Interfaz  extends JFrame implements ActionListener {
 
         String  opera="";
 
-        if(esNumero(e.getActionCommand())){ 
+        if(esNumero(e.getActionCommand())){
 
             if(jtexto.getText().equals("")){
                 auxiliar += e.getActionCommand();
@@ -249,17 +240,23 @@ public class Interfaz  extends JFrame implements ActionListener {
         }
         else{
 
-            if(e.getActionCommand().equals("R") ){
-                jtexto.setText("");
-                Float a = Float.parseFloat(jtexto2.getText());
-                jtexto2.setText(""+Math.sqrt(a)); 
+            if(e.getActionCommand().equals("CE") ){
+               
+                if ( jtexto2.getText().length() != 0) {
+                         jtexto2.setText( jtexto2.getText().substring(0,  jtexto2.getText().length() - 1));
+                         
+                }
+                auxiliar=jtexto2.getText();
+                
             }
             if(e.getActionCommand().equals("C") ){ 
-                tipoBoton=0; numero1 = 0; numero2 =0; resultado=0; jtexto.setText(""); jtexto2.setText("0"); auxiliar="";
-            }   
-            
-            
-            }    
+               tipoBoton=0; numero1 = 0; numero2 =0; resultado=0; jtexto.setText(""); jtexto2.setText("0"); auxiliar="";
+                
+             
+           
+               
+                       
+            }
             if(e.getActionCommand().equals(".")){
                 auxiliar="";
                 if(numeros[10].isEnabled()){
@@ -282,14 +279,14 @@ public class Interfaz  extends JFrame implements ActionListener {
                             tipoBoton = 1;
                         }
                         else {
-                            if(!x){
+                            if(!x){//validacion para nueva operacion
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto2.getText();
                                 jtexto.setText(auxiliar+" + ");
                                 jtexto2.setText("");
                                 tipoBoton = 1;
                             }
-                            else{
+                            else{//usar otras operaciones con la suma
                                 numero1 = Float.parseFloat(jtexto2.getText());                    
                                 auxiliar += jtexto.getText();
                                 jtexto.setText(auxiliar+" + ");
@@ -305,7 +302,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                     if(tipoBoton==2){
 
                     }else if(tipoBoton==0){
-                        if(jtexto.getText().equals("")){
+                            if(jtexto.getText().equals("")){
                             numero1 = Float.parseFloat(jtexto2.getText());                    
                             auxiliar += jtexto.getText()+ jtexto2.getText();
                             jtexto.setText(auxiliar+" - ");
@@ -412,7 +409,7 @@ public class Interfaz  extends JFrame implements ActionListener {
                         resultado=numero1-numero2;
                         jtexto2.setText(String.valueOf(resultado));
                     }
-                    if(tipoBoton==3){ 
+                    if(tipoBoton==3){
                         tipoBoton = 0;
                         auxiliar="";
                         auxiliar+=jtexto.getText()+jtexto2.getText();
@@ -438,11 +435,15 @@ public class Interfaz  extends JFrame implements ActionListener {
                            
                         }catch(Exception w){
                        
-                            JOptionPane.showMessageDialog(null, "No se puede realizar divison por 0");
+                            JOptionPane.showMessageDialog(null, "No se puede operar divison por 0");
                     }
                     }
                 }
-        }        
+        }
+    }
+        
+    
+        
 
     private void ExceptionInInitializerError() {
         throw new UnsupportedOperationException("Not supported yet."); 
@@ -456,8 +457,8 @@ public class Interfaz  extends JFrame implements ActionListener {
         }catch(NumberFormatException e){
             return false;
         }
-    } 
+
+    }
+
+   
     }       
-    
-
-
